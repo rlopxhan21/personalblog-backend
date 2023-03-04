@@ -1,6 +1,8 @@
 from django.db import models
+from django.urls import reverse
 
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 class ActiveManager(models.Manager):
     def get_queryset(self):
@@ -9,6 +11,7 @@ class ActiveManager(models.Manager):
 class Post(models.Model):
     title = models.CharField(max_length=256)
     slug = models.SlugField(max_length=256)
+    tags = TaggableManager()
     body = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     active= models.BooleanField(default=True)
@@ -26,6 +29,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('post:post_detail', args=[self.id])
 
 class Comment(models.Model):
     body = models.TextField()

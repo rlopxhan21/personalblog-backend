@@ -16,6 +16,8 @@ DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -28,6 +30,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'post.apps.PostConfig',
     'rest_framework',
+    'taggit',
+    'django.contrib.sitemaps',
+    'django.contrib.sites', 
 ]
 
 MIDDLEWARE = [
@@ -105,6 +110,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_ROOT = BASE_DIR / 'static'
 
 STATIC_URL = 'static/'
 
