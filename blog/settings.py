@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.sites',
     'corsheaders', 
+    "rest_framework_api_key",
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS Headers
 
 CORS_ORIGIN_WHITELIST = config("CORS_ORIGIN_WHITELIST", cast=Csv())
+
+#  REST Framework
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework_api_key.permissions.HasAPIKey",
+    ]
+}
+
