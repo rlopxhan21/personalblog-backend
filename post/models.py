@@ -10,6 +10,8 @@ class ActiveManager(models.Manager):
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
+    header = models.TextField(null=True, blank=True)
+    imagefield = models.ImageField(upload_to="post/", blank=True, null=True)
     slug = models.SlugField(max_length=256)
     tags = TaggableManager()
     body = models.TextField()
